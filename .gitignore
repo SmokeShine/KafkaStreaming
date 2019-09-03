@@ -1,2 +1,4 @@
 consumers/venv/
 producers/venv/
+consumers/__pycache__/
+producers/__pycache__/
