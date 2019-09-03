@@ -60,4 +60,16 @@ class Turnstile(Producer):
         # of entries that were calculated
         #
         #
-
+        try:
+            for entry in range(num_entries):
+                self.producer.produce(
+                topic=self.topic_name,
+                key={"timestamp": self.time_millis()},
+                value={
+                "station_id": self.station.station_id,
+                "station_name": self.station.name,
+                "line": self.station.color.name,
+                           })
+        except Exception as e:
+            logger.warning(f"Encountered Exception: {e}")
+            pass

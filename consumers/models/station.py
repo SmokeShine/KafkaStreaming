@@ -21,12 +21,12 @@ class Station:
     @classmethod
     def from_message(cls, value):
         """Given a Kafka Station message, creates and returns a station"""
-        pdb.set_trace()
+        #pdb.set_trace()
         return Station(value["station_id"], value["station_name"], value["order"])
 
     def handle_departure(self, direction):
         """Removes a train from the station"""
-        pdb.set_trace()
+        #pdb.set_trace()
         if direction == "a":
             self.dir_a = None
         else:
@@ -34,7 +34,7 @@ class Station:
 
     def handle_arrival(self, direction, train_id, train_status):
         """Unpacks arrival data"""
-        pdb.set_trace()
+        #pdb.set_trace()
         status_dict = {"train_id": train_id, "status": train_status.replace("_", " ")}
         if direction == "a":
             self.dir_a = status_dict
@@ -43,5 +43,5 @@ class Station:
 
     def process_message(self, json_data):
         """Handles arrival and turnstile messages"""
-        pdb.set_trace()
+        #pdb.set_trace()
         self.num_turnstile_entries = json_data["COUNT"]

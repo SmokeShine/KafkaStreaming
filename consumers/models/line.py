@@ -25,14 +25,14 @@ class Line:
 
     def _handle_station(self, value):
         """Adds the station to this Line's data model"""
-        pdb.set_trace()
+        #pdb.set_trace()
         if value["line"] != self.color:
             return
         self.stations[value["station_id"]] = Station.from_message(value)
 
     def _handle_arrival(self, message):
         """Updates train locations"""
-        pdb.set_trace()
+        #pdb.set_trace()
         value = message.value()
         prev_station_id = value.get("prev_station_id")
         prev_dir = value.get("prev_direction")

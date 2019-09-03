@@ -15,7 +15,7 @@ class Weather:
 
     def process_message(self, message):
         """Handles incoming weather data"""
-        pdb.set_trace()
+        #pdb.set_trace()
         logger.info("weather message")
         value = message.value()
         self.temperature = value["temperature"]

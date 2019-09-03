@@ -52,7 +52,7 @@ class KafkaConsumer:
         else:
             #self.consumer = Consumer(...)
             self.consumer = Consumer(self.broker_properties)
-            pass
+            #pass
 
         #
         #
@@ -93,17 +93,18 @@ class KafkaConsumer:
         # is retrieved.
         #
         #
-        logger.info("Polling for message")
+        
         try:
-            message=self.consumer.poll(timeout=self.consume_timeout)
-            return 1
+            message = self.consumer.poll(timeout=self.consume_timeout)
         except Exception as e:
-            logging.info(f"Failed with reason {e} ")
-            return 0
+            logger.warning(f"Encountered Exception {e}")
+            return 0   
         if message is None:
-            logger.info("No Message Received")
+            logger.info("Received Null Message")
             return 0
 
+        self.message_handler(message)
+        return 1
 
     def close(self):
         """Cleans up any open kafka consumers"""
